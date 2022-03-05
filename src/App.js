@@ -1,9 +1,9 @@
-import './App.css';
+import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Navbar from './Components/Navbar';
-import Upload from './Components/Upload';
-import History from './Components/History';
-import NotFound from './Components/NotFound';
+import Navbar from "./Components/Navbar";
+import Upload from "./Components/Upload";
+import History from "./Components/History";
+import NotFound from "./Components/NotFound";
 
 function App() {
   return (

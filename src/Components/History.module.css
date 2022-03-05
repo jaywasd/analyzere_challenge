@@ -1,0 +1,34 @@
+.history {
+  display: block;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 24px;
+  padding-right: 24px;
+  align-items: center;
+}
+
+.history p {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-style: italic;
+  color: white;
+}
+
+.history div{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.clearButton {
+  display: flex;
+  justify-content: flex-start;  
+  margin-top: 1rem;
+  padding-bottom: 2rem;
+  padding-left: 5rem; 
+  align-items: center;
+}

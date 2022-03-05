@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import Button from "@mui/material/Button";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import classes from "./Browse.module.css";
+import { useState } from "react";
 
 const theme = createTheme({
   palette: {
@@ -169,31 +170,20 @@ const fileList = {
 };
 
 const Browse = (props) => {
- 
-  let filePath = "root";
-  filePath += nodes.name;
-  
-  const findLocation = (nodes) => {
-    if (Array.isArray(nodes.children)) {
-      filePath += "/" + nodes.name;
-      nodes.children.map((node) => findLocation(node));
-    } else if (nodes.type === "file" && nodes.name === filename) {
-      filePath += "/" + nodes.name;
-      return;
-    } else {
-      filePath = "";
-    }
-    // Array.isArray(nodes.children)
-    //   ? nodes.children.map((node) => findLocation(node))
-    //   : nodes.name === filename;
-  };
+  const [selectedFile, setSelectedFile] = useState();
+  const [isFile, setIsFile] = useState(false);
 
   const onFileSelectHandler = (event, id) => {
-    console.log(event, id);
+    if (id.includes(".ext")) {
+      setIsFile(true);
+      setSelectedFile(id);
+    } else {
+      setIsFile(false);
+    }
   };
 
-  const onSelectHandler = (ele, id) => {
-    // console.log(ele.view, id);
+  const onSelectClickHandler = () => {
+    props.updateFilePath(fileList, selectedFile);
   };
 
   const renderTree = (nodes) => (
@@ -208,7 +198,7 @@ const Browse = (props) => {
     <Modal onConfirm={props.onClose}>
       <div className={classes.tree}>
         <TreeView
-          onNodeToggle={onFileSelectHandler}
+          onNodeSelect={onFileSelectHandler}
           aria-label="file directory"
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpanded={["root"]}
@@ -224,100 +214,14 @@ const Browse = (props) => {
           {renderTree(fileList)}
         </TreeView>
       </div>
-      {/* <div className={classes.tree}>
-        <TreeView
-          aria-label="file system navigator"
-          onNodeSelect={onSelectHandler}
-          multiSelect={true}
-          defaultCollapsed={true}
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ChevronRightIcon />}
-          sx={{ height: 240, flexGrow: 1, width: 1, overflowY: "auto" }}
-        >
-          <TreeItem
-            nodeId="root"
-            key="root"
-            label="root"
-            defaultCollapsed={false}
-          >
-            {fileList.map((element, i) => {
-              const type = element.type;
-              if (type === "dir") {
-                return (
-                  <TreeItem
-                    nodeId={element.name + i}
-                    key={element.name + i}
-                    label={element.name}
-                  >
-                    {element.children &&
-                      element.children.map((element, i) => {
-                        return (
-                          <TreeItem
-                            nodeId={element.name + i}
-                            key={element.name + i}
-                            label={element.name}
-                          >
-                            {element.children &&
-                              element.children.map((element, i) => {
-                                return (
-                                  <TreeItem
-                                    nodeId={element.name + i}
-                                    key={element.name + i}
-                                    label={element.name}
-                                  >
-                                    {element.children &&
-                                      element.children.map((element, i) => {
-                                        return (
-                                          <TreeItem
-                                            nodeId={element.name + i}
-                                            key={element.name + i}
-                                            label={element.name}
-                                          ></TreeItem>
-                                        );
-                                      })}
-                                  </TreeItem>
-                                );
-                              })}
-                          </TreeItem>
-                        );
-                      })}
-                  </TreeItem>
-                );
-              } else if (type === "file") {
-                return (
-                  <TreeItem
-                    nodeId={element.name + i}
-                    key={element.name + i}
-                    label={element.name}
-                    onClick={onFileSelectHandler}
-                  />
-                );
-              }
-            })}
-          </TreeItem>
-        </TreeView>
-        <TreeView
-          aria-label="file system navigator"
-          onNodeSelect={onSelectHandler}
-          multiSelect={true}
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ChevronRightIcon />}
-          sx={{ height: 240, flexGrow: 1, width:1, overflowY: "none" }}
-        >
-          <TreeItem nodeId="1" label="Applications">
-            <TreeItem nodeId="2" label="Calendar" />
-          </TreeItem>
-          <TreeItem nodeId="5" label="Documents">
-            <TreeItem nodeId="10" label="OSS" />
-            <TreeItem nodeId="6" label="MUI">
-              <TreeItem nodeId="8" label="index.js" />
-            </TreeItem>
-          </TreeItem>
-        </TreeView>
-      </div> */}
       <div className={classes.selectButton}>
         <ThemeProvider theme={theme}>
-          <Button variant="contained" size="small">
+          <Button
+            disabled={!isFile}
+            variant="contained"
+            size="small"
+            onClick={onSelectClickHandler}
+          >
             Select
           </Button>
         </ThemeProvider>
