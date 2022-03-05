@@ -1,0 +1,8 @@
+.notFound {
+  color: white;
+  max-width: 25rem;
+  padding: 1rem;
+  margin: 3rem auto;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}

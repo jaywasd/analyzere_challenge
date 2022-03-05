@@ -1,0 +1,43 @@
+.upload {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 24px;
+  padding-right: 24px;
+  align-items: center;
+}
+
+.upload form{
+  display: flex;
+  justify-content: left;
+}
+
+.upload div{
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.upload label {
+  color: white;
+  padding: auto;
+  padding-right: 5px;
+}
+
+.upload input {
+  width: auto;
+  padding: auto;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.uploadButton {
+  display: flex;
+  justify-content: flex-start;  
+  padding-bottom: 2rem;
+  padding-left: 5rem;
+  padding-right: 30px;
+  align-items: center;
+}

@@ -1,0 +1,16 @@
+.tree {
+  display: flex;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 24px;
+  padding-right: 24px;
+  align-items: center;
+}
+
+.selectButton {
+  display: flex;
+  justify-content: flex-end;  
+  padding-bottom: 2rem;
+  padding-right: 30px;
+  align-items: center;
+}
