@@ -2,7 +2,7 @@ import classes from "./Upload.module.css";
 import Button from "@mui/material/Button";
 import Browse from "./Browse";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 
@@ -17,14 +17,29 @@ const theme = createTheme({
 const Upload = () => {
   const [isBrowsing, setIsBrowsing] = useState(false);
   const [selectedPath, setSelectedPath] = useState("");
-  const [isUploading, setIsUploading] = useState(false);
-  const [isUploaded, setIsUploaded] = useState(false);
+  const [isUploading, setIsUploading] = useState();
+  const [isUploaded, setIsUploaded] = useState();
+
+  useEffect(() => {
+    localStorage.removeItem("selectedPath");
+    setSelectedPath();
+  }, []);
 
   const onBrowseHandler = () => {
     setIsBrowsing(true);
   };
 
   const onUploadHandler = () => {
+    if (localStorage.getItem("fileList")) {
+      const file = JSON.stringify([
+        ...JSON.parse(localStorage.getItem("fileList")),
+        selectedPath,
+      ]);
+      localStorage.setItem("fileList", file);
+    } else {
+      const file = JSON.stringify([selectedPath]);
+      localStorage.setItem("fileList", file);
+    }
     const interval = setInterval(function () {
       setIsUploading(false);
       setIsUploaded(true);
@@ -63,7 +78,6 @@ const Upload = () => {
 
   const getPath = (fileList, selectedFile) => {
     const obj = customFilter(fileList.children, "name", selectedFile);
-    console.log("--", obj);
     if (obj.name === selectedFile) {
       return `${obj.name}`;
     } else {
@@ -73,20 +87,9 @@ const Upload = () => {
 
   const updateFilePath = (fileList, selectedFile) => {
     setIsUploaded(false);
-    console.log("FINAL", getPath(fileList, selectedFile));
     const path = getPath(fileList, selectedFile);
     setSelectedPath(`root/${path}`);
     localStorage.setItem("selectedPath", `root/${path}`);
-    if (localStorage.getItem("fileList")) {
-      const file = JSON.stringify([
-        ...JSON.parse(localStorage.getItem("fileList")),
-        `root/${path}`,
-      ]);
-      localStorage.setItem("fileList", file);
-    } else {
-      const file = JSON.stringify([`root/${path}`]);
-      localStorage.setItem("fileList", file);
-    }
     setIsBrowsing(false);
   };
 
