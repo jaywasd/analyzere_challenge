@@ -9,7 +9,7 @@
 * [Jay Nimeshkumar Patel](jy982893@dal.ca)
 
 ### Prerequisites
-Below mentioned versions of node and npm are required.
+Below mentioned node and npm versions are required.
 ```
 node >= 14.0.0 and npm >= 6
 ```
