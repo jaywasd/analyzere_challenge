@@ -2,7 +2,7 @@
 
 * *Date Created*: 03 MAR 2022
 * *Last Modification Date*: 05 MAR 2022
-* *GitLab Repository URL*: <https://github.com/jaywasd/analyzere_challenge>
+* *GitHub Repository URL*: <https://github.com/jaywasd/analyzere_challenge>
 
 ## Authors
 
