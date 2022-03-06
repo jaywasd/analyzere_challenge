@@ -17,8 +17,8 @@ const theme = createTheme({
 const Upload = () => {
   const [isBrowsing, setIsBrowsing] = useState(false);
   const [selectedPath, setSelectedPath] = useState("");
-  const [isUploading, setIsUploading] = useState();
-  const [isUploaded, setIsUploaded] = useState();
+  const [isUploading, setIsUploading] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
 
   useEffect(() => {
     localStorage.removeItem("selectedPath");
