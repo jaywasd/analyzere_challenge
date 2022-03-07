@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <AppBar position="static">
-        <Container maxWidth="xl">
+        <Container maxWidth="l">
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
