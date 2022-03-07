@@ -9,9 +9,9 @@
 * [Jay Nimeshkumar Patel](jy982893@dal.ca)
 
 ### Prerequisites
-Below mentioned versions of node and npm are required.
+Below mentioned node and npm versions are required.
 ```
-node >= 14.0.0 and npm >= 5.6
+node >= 14.0.0 and npm >= 6
 ```
 To have a local copy of this Project up and running on your local machine, you will first need to install the following packages.
 ```
